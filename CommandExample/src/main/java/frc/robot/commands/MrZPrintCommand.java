@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class MrZPrintCommand extends CommandBase {
-  private final Logger log = LoggerFactory.getLogger(MrZPrintCommand.class);
+  private static final Logger LOG = LoggerFactory.getLogger(MrZPrintCommand.class);
   private int counter = 0;
 
   /** Creates a new MrZPrintCommand. */
@@ -21,7 +21,7 @@ public class MrZPrintCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    log.info("Initializing...");
+    LOG.info("Initializing...");
     counter = 0;
   }
 
@@ -29,7 +29,7 @@ public class MrZPrintCommand extends CommandBase {
   @Override
   public void execute() {
     counter ++;
-    log.trace("counter: {}", counter);
+    LOG.trace("counter: {}", counter);
 
     // example ways to debug code
     // Note that System.out will ALWAYS happen, which can significantly clutter logs
@@ -46,28 +46,28 @@ public class MrZPrintCommand extends CommandBase {
     // WARN is for potential problems
     // ERROR is for touble - fundamental assumptions not met, exception reporting, etc.
     //
-    log.trace("This is a trace");
-    log.debug("I'm here, in the logger!");
-    log.info("Hello, I'm informing you");
-    log.warn("You need to know something important");
-    log.error("Houston, we have a problem");
+    LOG.trace("This is a trace");
+    LOG.debug("I'm here, in the logger!");
+    LOG.info("Hello, I'm informing you");
+    LOG.warn("You need to know something important");
+    LOG.error("Houston, we have a problem");
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    log.debug("end");
+    LOG.debug("end");
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    log.trace("isFinished saw counter: {}", counter);
+    LOG.trace("isFinished saw counter: {}", counter);
     if (counter < 10) {
-      log.trace("returning false");
+      LOG.trace("returning false");
       return false;
     }
-    log.trace("returning true");
+    LOG.trace("returning true");
     return true;
   }
 }
