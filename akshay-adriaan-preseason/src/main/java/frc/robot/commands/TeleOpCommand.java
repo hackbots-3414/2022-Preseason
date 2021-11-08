@@ -25,7 +25,7 @@ public class TeleOpCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveSubsystem.drive(RobotContainer.DRIVER_CONTROLS.getSteering(), RobotContainer.DRIVER_CONTROLS.getThrottle());
+    driveSubsystem.drive(RobotContainer.DRIVER_CONTROLS.getThrottle(), RobotContainer.DRIVER_CONTROLS.getSteering());
   }
 
   // Called once the command ends or is interrupted.

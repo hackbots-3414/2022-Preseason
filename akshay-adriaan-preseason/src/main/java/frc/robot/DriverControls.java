@@ -20,6 +20,6 @@ public class DriverControls {
     }
 
     public double getSteering() {
-        return controller.getX(Hand.kLeft);
+        return controller.getX(Hand.kRight);
     }
 }
