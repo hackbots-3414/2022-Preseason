@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import java.security.MessageDigest;
+
 import edu.wpi.first.wpilibj.RobotBase;
 
 /**
@@ -21,5 +23,12 @@ public final class Main {
    */
   public static void main(String... args) {
     RobotBase.startRobot(Robot::new);
+    
   }
+/*
+  public void evan(String message) {
+   message =  "LIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIINE";
+   System.out.println(line);
+  }
+*/
 }
