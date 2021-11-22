@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.DriveStraight;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.TeleopCommand;
 import frc.robot.subsystems.DriveSubSystem;
@@ -25,8 +26,8 @@ public class RobotContainer {
 
   private final DriveSubSystem driveSubSystem = new DriveSubSystem();
   private final TeleopCommand teleopCommand = new TeleopCommand(driveSubSystem);
-  
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  private DriveStraight driveStraightCommand = new DriveStraight(.5, 25000, driveSubSystem);
+  /** The container for the robot. Contains subsystems, OI devices, and commands. */ 
   public RobotContainer() {
     driveSubSystem.setDefaultCommand(teleopCommand);
   }
@@ -46,6 +47,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return driveStraightCommand;
   }
 }
