@@ -11,6 +11,8 @@ import frc.robot.commands.TeleOpCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.DriveStraight;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -25,10 +27,11 @@ public class RobotContainer {
 
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
   private final TeleOpCommand teleOpCommand = new TeleOpCommand(driveSubsystem);
-
+  private final DriveStraight driveStraightCommand = new DriveStraight(.2, 10000.0, driveSubsystem);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     driveSubsystem.setDefaultCommand(teleOpCommand);
+    
   }
 
   /**
@@ -38,6 +41,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    
+    return driveStraightCommand;
   }
 }
