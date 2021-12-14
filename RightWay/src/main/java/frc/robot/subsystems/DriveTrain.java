@@ -103,8 +103,10 @@ tankDrive.setMaxOutput(1.0);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void tankDrive(double left, double right) {
-     //Tank drive
-      tankDrive.tankDrive(left, right);
+
+        // Tank drive
+        tankDrive.tankDrive(-left, -right);
+
     }
 
   public void arcadeDrive(double speed, double rotation) {
