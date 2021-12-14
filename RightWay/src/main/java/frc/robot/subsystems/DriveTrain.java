@@ -99,7 +99,7 @@ tankDrive.setMaxOutput(1.0);
     // here. Call these from Commands.
     public void tankDrive(double left, double right) {
         // Tank drive
-        tankDrive.tankDrive(left, right);
+        tankDrive.tankDrive(-left, -right);
     }
 
 }

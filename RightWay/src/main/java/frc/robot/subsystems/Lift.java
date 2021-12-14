@@ -87,12 +87,12 @@ rightGrabber.follow(leftGrabber);
        
         if (upspeed > 0 & downspeed <= 0)
           {
-              liftMotor.set(upspeed);
+              liftMotor.set(-upspeed);
           }
 
           if (downspeed > 0 & upspeed <= 0)
           {
-              liftMotor.set(-downspeed);
+              liftMotor.set(downspeed);
           }
 
           if (downspeed == 0 & upspeed == 0)

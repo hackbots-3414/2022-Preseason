@@ -55,8 +55,8 @@ public class ArticulateGrabber extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        righttrigger = -RobotContainer.getInstance().getXboxController0().getTriggerAxis(Hand.kRight);
-        lefttrigger =  -RobotContainer.getInstance().getXboxController0().getTriggerAxis(Hand.kLeft);
+        righttrigger = RobotContainer.getInstance().getXboxController0().getTriggerAxis(Hand.kRight);
+        lefttrigger =  RobotContainer.getInstance().getXboxController0().getTriggerAxis(Hand.kLeft);
         m_lift.lift(righttrigger, lefttrigger);
     }
 
