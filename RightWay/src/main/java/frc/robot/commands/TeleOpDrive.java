@@ -56,8 +56,10 @@ public class TeleOpDrive extends CommandBase {
     @Override
     public void execute() {
         XboxController joystick = RobotContainer.getInstance().getXboxController0();
-        m_driveTrain.tankDrive(joystick.getY(Hand.kLeft), joystick.getY(Hand.kRight));
+       // m_driveTrain.tankDrive(joystick.getY(Hand.kLeft), joystick.getY(Hand.kRight));
+        m_driveTrain.arcadeDrive(joystick.getY(Hand.kLeft), joystick.getY(Hand.kRight));
     }
+
 
     // Called once the command ends or is interrupted.
     @Override
