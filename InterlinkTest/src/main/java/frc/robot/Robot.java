@@ -31,10 +31,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    SmartDashboard.putNumber("Left_X_Trim", 1.0);
-    SmartDashboard.putNumber("Left_Y_Trim", 1.0);
-    SmartDashboard.putNumber("Right_X_Trim", 1.0);
-    SmartDashboard.putNumber("Right_Y_Trim", 1.0);
+    // observed maximums
+    SmartDashboard.putNumber("Left_X_Max", 0.7);
+    SmartDashboard.putNumber("Left_Y_Max", 0.6);
+    SmartDashboard.putNumber("Right_X_Max", 0.8);
+    SmartDashboard.putNumber("Right_Y_Max", 0.8);
   }
 
   /** This function is run once each time the robot enters autonomous mode. */
@@ -70,33 +71,35 @@ public class Robot extends TimedRobot {
     leftY = getLeftY();
     rightX = getRightX();
     rightY = getRightY();
-    m_robotDrive.arcadeDrive(leftY, leftX);
-    System.out.println("Left: " + leftX + ", " + leftY + "; Right: " + rightX + ", " + rightY);
-
-
-    // Access via RawAxis or Hand doesn't matter; these printlns display same
-//    System.out.println(m_stick.getName() + ": Left: (" + m_stick.getX(Hand.kLeft) + ", " + m_stick.getY(Hand.kLeft)
-//        + "), Right: (" + m_stick.getX(Hand.kRight) + ", " + m_stick.getY(Hand.kRight) + ")");
-//    System.out.println("Raw Axis: " + m_stick.getName() + ": Left: (" + m_stick.getRawAxis(0) + ", "
-//        + m_stick.getRawAxis(1) + "), Right: ("
-//        + m_stick.getRawAxis(3) + ", " + m_stick.getRawAxis(4) + ")");
+    // helpful debugging
+    SmartDashboard.putNumber("leftX", leftX);
+    SmartDashboard.putNumber("leftY", leftY);
+    SmartDashboard.putNumber("rightX", rightX);
+    SmartDashboard.putNumber("rightY", rightY);
+    
+    m_robotDrive.arcadeDrive(leftY, rightX);
 
   }
 
+  // NOTE: must use getRawAxis() to work around bug in WPILib
+  // This formula is very simple - divide the value off the stick by the observed max, sort
+  // of remapping it to a 1.0 maximum.  Better would be to come up with a formula that pins
+  // center at zero, accounts for an observed minimum and an observed maximum, mapping it all
+  // to -1.0 -> 0.0 -> + 1.0
   public double getLeftX() {
-    return m_stick.getX(Hand.kLeft) * SmartDashboard.getNumber("Left_X_Trim", 1.0);
+    return m_stick.getRawAxis(0) / SmartDashboard.getNumber("Left_X_Max", 1.0);
   }
 
   public double getLeftY() {
-    return m_stick.getY(Hand.kLeft) * SmartDashboard.getNumber("Left_Y_Trim", 1.0);
+    return m_stick.getRawAxis(1) / SmartDashboard.getNumber("Left_Y_Max", 1.0);
   }
 
   public double getRightX() {
-    return m_stick.getX(Hand.kRight) * SmartDashboard.getNumber("Right_X_Trim", 1.0);
+    return m_stick.getRawAxis(3) / SmartDashboard.getNumber("Right_X_Max", 1.0);
   }
 
   public double getRightY() {
-    return m_stick.getY(Hand.kRight) * SmartDashboard.getNumber("Right_Y_Trim", 1.0);
+    return m_stick.getRawAxis(4) / SmartDashboard.getNumber("Right_Y_Max", 1.0);
   }
 
   /** This function is called once each time the robot enters test mode. */
