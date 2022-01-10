@@ -5,7 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PWMSparkMax;
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -74,6 +74,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("leftY", leftY);
     SmartDashboard.putNumber("rightX", rightX);
     SmartDashboard.putNumber("rightY", rightY);
+    SmartDashboard.putBoolean("Button 4", m_stick.getRawButton(4));
     
     m_robotDrive.arcadeDrive(leftY, rightX);
 
@@ -85,19 +86,19 @@ public class Robot extends TimedRobot {
   // center at zero, accounts for an observed minimum and an observed maximum, mapping it all
   // to -1.0 -> 0.0 -> + 1.0
   public double getLeftX() {
-    return m_stick.getRawAxis(0) / SmartDashboard.getNumber("Left_X_Max", 1.0);
+    return -m_stick.getRawAxis(0) / SmartDashboard.getNumber("Left_X_Max", 1.0);
   }
 
   public double getLeftY() {
-    return m_stick.getRawAxis(1) / SmartDashboard.getNumber("Left_Y_Max", 1.0);
+    return -m_stick.getRawAxis(1) / SmartDashboard.getNumber("Left_Y_Max", 1.0);
   }
 
   public double getRightX() {
-    return m_stick.getRawAxis(3) / SmartDashboard.getNumber("Right_X_Max", 1.0);
+    return -m_stick.getRawAxis(3) / SmartDashboard.getNumber("Right_X_Max", 1.0);
   }
 
   public double getRightY() {
-    return m_stick.getRawAxis(4) / SmartDashboard.getNumber("Right_Y_Max", 1.0);
+    return -m_stick.getRawAxis(4) / SmartDashboard.getNumber("Right_Y_Max", 1.0);
   }
 
   /** This function is called once each time the robot enters test mode. */
